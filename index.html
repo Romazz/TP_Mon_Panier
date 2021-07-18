@@ -1,0 +1,147 @@
+<!--------------------------LEFT SIDE---------------------->
+
+<html>
+    <head>
+        <title>Mon panier</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="main.css">
+    </head>
+    
+    <body>
+        <div class="container">
+            <main class="selectproduct">
+                <div class="infos"></div>
+
+                <section class="s-list">
+                    <div class="sl-item"></div>
+                    <div class="sl-item"></div>
+                    <div class="sl-item"></div>
+                    <div class="sl-item"></div>
+                    <div class="sl-item"></div>
+                    <div class="sl-item"></div>
+                </section>
+    
+                <form id="form-cart">
+                <div class="product-name">
+                    <label for="product-select">Produit</label>
+                    <select name="product" id="product">
+                        <option value="">Choisir un produit à ajouter au panier</option>
+                        <option value="Tee shirt">Tee-Shirt</option>
+                        <option value="Sweat">Sweat</option>
+                        <option value="Pantalon">Pantalon</option>
+                    </select>
+                </div>
+
+                <div class="product-size">
+                    <label for="size-select">Taille</label>
+                    <select name="size" id="size">
+                        <option value="L">L</option>
+                        <option value="M">M</option>
+                        <option value="S">S</option>
+                    </select>
+                </div>
+    
+                <div class="product-color">
+                    <label for="color-select">Couleur</label>
+                    <select name="color" id="color">
+                        <option value="">Choisir une couleur</option>
+                        <option value="Bleu">Bleu</option>
+                        <option value="Rouge">Rouge</option>                           
+                        <option value="Vert">Vert</option>
+                    </select>
+                </div>
+                
+                <div class="product-comment">
+                    <label for="comment">Commentaire</label>
+                    <input type="text" id="comment" placeholder="Ajouter un commentaire">
+                </div>
+
+            </form>
+    
+                <footer>
+                    <p class="totalamount">34.99€</p>
+                    <button class="f-action" type="button" onClick="addToCart()"><img src="assets/img/add.png" /> Ajouter au panier</button>
+                </footer>
+            </main>
+
+
+<!------------------------RIGHT SIDE------------------->
+
+
+            <aside class="sidebar">
+                <header>
+                        <h1>Mon panier</h1>
+                        <a href="#" onClick="clearCart()">Vider le panier</a>
+                </header>
+                <section class="content"> 
+                    <img src="assets/img/imgproduit.jpeg">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit malesuada nec odio et urna, risus. Magna blandit cras iaculis volutpat quisque. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </section>
+                <form id="list">
+                    <div class="l-item" id="item1">
+                        <div class="li-header">
+                            <h3 id="lih-product">Article 1</h3>
+                            <p id="lih-size">2.55€</p>
+                        </div>
+                        <p id="li-color">1x Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                    <div class="l-item" id="item2">
+                        <div class="li-header">
+                            <h3>Article 2</h3>
+                            <p>2.55€</p>
+                        </div>
+                        <p class="li-text">1x Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                    <div class="l-item" id="item3">
+                        <div class="li-header">
+                            <h3>Article 3</h3>
+                            <p>2.55€</p>
+                        </div>
+                        <p class="li-text">1x Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                </form>
+                <footer>
+                    <p id="totalamount">154€</p>
+                    <a class="f-action" href="validation.html" target="blank"><img src="assets/img/fire.png"/> Valider mon panier</a>
+
+                </footer>
+            </aside>
+        </div>
+    </body>
+
+    <script>
+
+    function updateAmount(){
+    var cartTotalAmount = document.getElementById("totalamount").innerHTML;
+    document.getElementById("totalamount").innerHTML = parseFloat(cartTotalAmount) + 34.99 + "€";
+    }
+
+    function ChangeTotalZero(){
+    document.getElementById("totalamount").innerHTML = 0 + "€";
+    }
+
+    function addToCart() {
+    var int = document.getElementById("totalamount").value;
+    var product = document.getElementById("product").value;
+    var size = document.getElementById("size").value;
+    var color = document.getElementById("color").value;
+    var  comment= document.getElementById("comment").value;
+
+    document.getElementById("list").innerHTML = document.getElementById("list").innerHTML + '<div class="l-item" id="item1"> <div class="li-header"> <h3 id="lih-product">' + product + '</h3> <p id="lih-size">' + size +' - '+ color + '</p> </div> <p id="li-color">' + comment + '</p> </div>';
+    updateAmount();
+    }
+
+    function clearCart() {
+    var element = document.getElementById("list");
+    while (element.firstChild) {
+    element.removeChild(element.firstChild);
+    }
+
+    ChangeTotalZero();
+
+    }
+
+    </script>
+</html>
